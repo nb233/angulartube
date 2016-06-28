@@ -1,0 +1,56 @@
+<html ng-app ="youApi">
+	<head>
+	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"> </script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"> </script>
+	    <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"> </script>
+	    <script src= "/mainCtrl.js"> </script>
+		<link rel="stylesheet" href="/stylesheets/style.css">
+
+	</head>
+
+	<body ng-controller ="mainController">
+			
+		<nav class="navbar navbar-default" style ="width:100%;position:fixed;">
+			<a href ="/"><div id = "imgContainer" style ="display:inline-block;">
+				<img id ="youLogo" src = "/images/youtubeLogo.png"></a>
+		 	</div>
+		   	
+			<input type = "text" ng-model ="searchTerm" id="searchTerm">
+		 	<img id ="searchButton" src = "/images/searchButton.png" ng-click ="searchReq(0)"> </a>		
+
+		</nav>
+		<div resultArea style ="padding-top: 10%;" class= "container">
+			<div id ="resultList" ng-repeat ="searchItem in searchResults" style ="padding-top:2%;display:flex;">
+				<a ng-href = "/getVideo/?vidId={{searchItem.id.videoId}}"> <div id ="resultWrapper" style ="display:flex;">
+					<div id ="vidThumbnail" style ="display:inline-block;">
+						<img ng-src="{{searchItem.snippet.thumbnails.default.url}}" alt="Description" />
+					</div>
+
+					<div id ="vidInfo" style ="display:inline-block;padding-left:10;">
+						<div id ="vidTitle">
+							{{searchItem.snippet.title}}
+						</div>
+
+						<div id ="channelTitle" style ="font-size:12">
+							{{searchItem.snippet.channelTitle}}
+						</div>
+
+						<div id ="vidDesc2" style ="font-size:12">
+							{{searchItem.snippet.description}}
+						</div>
+
+					</div>
+				</div>
+				</a>
+			</div>
+
+			<div id ="navButtons"  style ="padding-top:20;">
+				<button ng-click ="searchReq(1)"> More </button>
+				<button ng-click ="goTop()"> Go to Top </button>
+			</div>
+		</div>
+
+	</body>
+</html>
