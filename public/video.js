@@ -1,15 +1,17 @@
 var youTube = angular.module('youApi',[]);
 var nextToken = '';
 
+
 youTube.controller('mainController', ['$scope', '$http','$sce',function($scope,$http,$sce) {
+	/* For trusting the URL as safe Angular needs this */
 	$scope.trustSrc = function(src) {
     	return $sce.trustAsResourceUrl(src);
   	}
 
+
+
 	$http.get('/getVideo').success(function(data){
-		console.log(data);
 		data.id = 'https://www.youtube.com/embed/' + data.id;
-		console.log(data.id);
 		$scope.vidInfo = data;
 
 		$http.get('/channelInfo?chId=' + data.snippet.channelId).success(function(data2){	
@@ -20,6 +22,7 @@ youTube.controller('mainController', ['$scope', '$http','$sce',function($scope,$
 
 	});
 
+	/* Function to convert the timestamp into proper Date */
 	$scope.getDate = function(datetime){
 		var dtime = datetime.replace("T"," ").replace(/\..+/g,"")
 		dtime = new Date( dtime );
@@ -32,7 +35,9 @@ youTube.controller('mainController', ['$scope', '$http','$sce',function($scope,$
 	}
 
 
-
+	/* Function handling search requests . Flag =0 specifies normal search request, flag =1 specifies that the use has
+	   searched for a first few results and is now wanting to see more for the same query
+	 */
 	$scope.searchReq = function(flag){
 		if(flag==0)
 			window.location.href = '/search?page=render&q=' + $scope.searchTerm;
