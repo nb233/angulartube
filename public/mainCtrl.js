@@ -12,6 +12,7 @@ youTube.controller('mainController', ['$scope', '$rootScope', '$location','$http
 		if(window.location.pathname == '/'){
 			$http.get('/?page=home').success(function(data){
 				$scope.searchResults = data.items;
+				$scope.navButtons = !$scope.navButtons;
 
 			})
 			.error(function(data){
@@ -26,7 +27,7 @@ youTube.controller('mainController', ['$scope', '$rootScope', '$location','$http
 					searchTerm = data.searchTerm;
 					nextToken = data.nextPageToken;
 					$scope.searchTerm=searchTerm;
-
+					$scope.navButtons = !$scope.navButtons;
 				
 			})
 			.error(function(data){
