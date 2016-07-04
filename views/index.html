@@ -6,6 +6,7 @@
 		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"> </script>
 	    <script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"> </script>
 	    <script src= "/mainCtrl.js"> </script>
+	    <meta name="viewport" content="width=device-width" />
 		<link rel="stylesheet" href="/stylesheets/style.css">
 
 	</head>
@@ -21,7 +22,7 @@
 		 	<img id ="searchButton" src = "/images/searchButton.png" ng-click ="searchReq(0)"> </a>		
 
 		</nav>
-		<div resultArea style ="padding-top: 10%;" class= "container">
+		<div resultArea style ="padding-top: 10%;" class= "container" id="rList">
 			<div id ="resultList" ng-repeat ="searchItem in searchResults" style ="padding-top:2%;display:flex;">
 				<a ng-href = "/getVideo/?vidId={{searchItem.id.videoId}}"> <div id ="resultWrapper" style ="display:flex;">
 					<div id ="vidThumbnail" style ="display:inline-block;">
@@ -46,7 +47,7 @@
 				</a>
 			</div>
 
-			<div id ="navButtons"  style ="padding-top:20;">
+			<div id ="navButtons"  style ="padding-top:20">
 				<button ng-click ="searchReq(1)"> More </button>
 				<button ng-click ="goTop()"> Go to Top </button>
 			</div>

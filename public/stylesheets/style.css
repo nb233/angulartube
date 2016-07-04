@@ -1,5 +1,9 @@
 @media only screen and (max-width : 780px){
 
+	#rList{
+		padding-top:27% !important;
+	}
+
 	.video{
 		min-width: 100%;
 		min-height: 40%;
@@ -12,6 +16,12 @@
 	#searchTerm{
 		max-width:35%;
 	}
+
+	#vidDesc2{
+		display: none;
+	}
+
+
 
 
 }
@@ -65,20 +75,20 @@
 
 #vidDesc{
 	padding:10;
-	width: 65%;
+	width: 100%;
 }
 
 #videoInfo {
 	padding-bottom:10;
 	margin-top:18;
 	background-color:white;
-	width: 65%;
+	width: 100%;
 	float:left;
 }
 
 #videoInfo2{
 	margin-top:18;
-	width: 65%;
+	width: 100%;
 	background-color:white;
 	float:left;
 }

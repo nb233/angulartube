@@ -55,40 +55,39 @@
 			</div>
 		</div>		
 
-		<div class ="container" style ="padding-top:12%;">
-
+		<div class ="container" style ="padding-top:12%;display:flex;">
 			<div>
-				<iframe class ="video" width = "65%" height ="60%" ng-src="{{trustSrc(vidInfo.id)}}"> </iframe>
-			</div>
-			<div id ="videoInfo" class ="container-fluid">
-				<div id ="vidName" style ="background-color:white;margin-top:2%;">
-					<span style ="font-size:18;font-family:'Roboto';font-weight:600"> {{vidInfo.snippet.title}} </span>
+				<div>
+					<iframe class ="video" width = "100%" height ="60%" ng-src="{{trustSrc(vidInfo.id)}}"> </iframe>
 				</div>
-
-				<div id ="channelInfo">
-					<img id ="channelPic" ng-src = "{{channelInfo.snippet.thumbnails.default.url}}">
-					<span id ="cName"> {{vidInfo.snippet.channelTitle}} </span>
-					<div id ="viewCount"> 
-						{{vidInfo.statistics.viewCount}} views
+				<div id ="videoInfo" class ="container-fluid">
+					<div id ="vidName" style ="background-color:white;margin-top:2%;">
+						<span style ="font-size:18;font-family:'Roboto';font-weight:600"> {{vidInfo.snippet.title}} </span>
 					</div>
-					
+
+					<div id ="channelInfo">
+						<img id ="channelPic" ng-src = "{{channelInfo.snippet.thumbnails.default.url}}">
+						<span id ="cName"> {{vidInfo.snippet.channelTitle}} </span>
+						<div id ="viewCount"> 
+							{{vidInfo.statistics.viewCount}} views
+						</div>
+						
+					</div>
+
 				</div>
 
-			</div>
+				<div id ="videoInfo2">
+					<div id ="publishedAt">
+						<b> Published On {{getDate(vidInfo.snippet.publishedAt)}} </b>
+					</div>
 
-			<div id ="videoInfo2">
-				<div id ="publishedAt">
-					<b> Published On {{getDate(vidInfo.snippet.publishedAt)}} </b>
-				</div>
-
-				<div id ="vidDesc">
-					<p style="white-space:pre-line;">{{vidInfo.snippet.description}} </p>
+					<div id ="vidDesc">
+						<p style="white-space:pre-line;">{{vidInfo.snippet.description}} </p>
+					</div>
 				</div>
 			</div>
 
 		</div>
-
-
 
 	</body>
 

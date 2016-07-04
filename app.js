@@ -8,7 +8,7 @@ var API_KEY = 'AIzaSyAr9xBlzUbDqg44kU2DahiCr4_DsQ9Fbug'; // specify your API key
 
 var nextToken;
 
-var data_to_send;
+var data_to_send_search;
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -18,7 +18,7 @@ app.use(express.static('public'));
 
 
 app.get('/', function (req, res) {	
-	if(typeof req.query.q == "string"){
+	if(typeof req.query.page == "string"){
 		youtube.search.list({ key: API_KEY, part: 'snippet',chart: 'mostPopular' , type: 'video',maxResults:20}, function(err, data) {
       	res.send(data); 
   
@@ -33,18 +33,29 @@ app.get('/', function (req, res) {
 
 
 app.get('/search/', function(req, res) {
-    if(req.query.nextToken == ''){
-      youtube.search.list({ key: API_KEY, part: 'snippet',q:req.query.q , type: 'video',maxResults:20}, function(err, data) {
-        res.send(data);  
+  if(typeof req.query.page == "undefined"){
+    res.send(data_to_send_search);
+  }
+
+  else if(typeof req.query.nextToken =="undefined"){
+    youtube.search.list({ key: API_KEY, part: 'snippet',q:req.query.q , type: 'video',maxResults:20}, function(err, data) {
+        data.searchTerm = req.query.q;
+        data_to_send_search = data; 
+        res.render('index');
+
     
       });
-    }
-    else{
-      youtube.search.list({ key: API_KEY, part: 'snippet',q:req.query.q , type: 'video',maxResults:20,pageToken:req.query.nextToken}, function(err, data) {
-        res.send(data);  
+  }
+
+  else{
+
+    youtube.search.list({ key: API_KEY, part: 'snippet',q:req.query.q , type: 'video',maxResults:20,pageToken:req.query.nextToken}, function(err, data) {
+      res.send(data);
     
       });
-    }
+
+  }
+
 
 });
 
@@ -60,6 +71,7 @@ app.get('/getVideo/', function(req, res) {
 
       youtube.videos.list({key: API_KEY,id : req.query.vidId, part : 'snippet,statistics' },function(err,data){
         res.render('videoView');
+        console.log(data.items[0]);
         data_to_send=data.items[0];
 
 

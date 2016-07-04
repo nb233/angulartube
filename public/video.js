@@ -34,26 +34,22 @@ youTube.controller('mainController', ['$scope', '$http','$sce',function($scope,$
 
 
 	$scope.searchReq = function(flag){
-		if(flag == 0)
-			nextToken= '';
-
-		window.location.href ="/?h";
-		$http.get('/search?q=' + $scope.searchTerm + '&nextToken=' + nextToken).success(function(data){
-			console.log("HEy");
-			if(nextToken == '')
-				$scope.searchResults = data.items;
-			else{
+		if(flag==0)
+			window.location.href = '/search?page=render&q=' + $scope.searchTerm;
+		else{
+			$http.get('/search?q=' + searchTerm + '&page=more&nextToken=' + nextToken).success(function(data){
 				for (var i = 0; i < data.items.length; i++) {
+					data.items[i].snippet.description = data.items[i].snippet.description.substring(150);
 					$scope.searchResults.push(data.items[i]);
-				}
+				}	
 				
-			}
-			nextToken = data.nextPageToken;
-		})
-		.error(function(data){
-			console.log("Error : " + data);
+				nextToken = data.nextPageToken;
+			})
+			.error(function(data){
+				console.log("Error : " + data);
 
-		});
+			});
+		}
 	}
 
 
