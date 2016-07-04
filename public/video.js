@@ -49,7 +49,7 @@ youTube.controller('mainController', ['$scope', '$http','$sce',function($scope,$
 				console.log("Error : " + data);
 
 			});
-		}
+		} 
 	}
 
 

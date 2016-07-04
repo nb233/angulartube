@@ -5,6 +5,7 @@ var searchTerm;
 youTube.controller('mainController', ['$scope', '$rootScope', '$location','$http',function($scope,$rootScope,$location,$http) {
 	$rootScope.$on('$locationChangeSuccess', function() {
 		$scope.refreshItems();
+		console.log($rootScope.searchTerm);
     });        
 
 	$scope.refreshItems = function() {
