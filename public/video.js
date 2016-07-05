@@ -22,6 +22,11 @@ youTube.controller('mainController', ['$scope', '$http','$sce',function($scope,$
 
 	});
 
+	$scope.myFunct = function(keyEvent) {
+	  	if (keyEvent.which === 13)
+	    	this.searchReq(0);
+	}
+
 	/* Function to convert the timestamp into proper Date */
 	$scope.getDate = function(datetime){
 		var dtime = datetime.replace("T"," ").replace(/\..+/g,"")

@@ -8,6 +8,15 @@
 	    <script src= "/video.js"> </script>
 	    <meta name="viewport" content="width=device-width" />
 		<link rel="stylesheet" href="/stylesheets/style.css">
+		<script>
+			$(window).on('load ,resize',function () {
+				console.log("HEY");
+			    var viewportWidth = $(window).width();
+			    if (viewportWidth < 600) {
+			        $(".video").removeClass("video").addClass("embed-responsive embed-responsive-16by9");
+			    }
+			});
+		</script>
 
 	</head>
 
@@ -18,7 +27,7 @@
 			<a href ="/">	<img id ="youLogo" src = "/images/youtubeLogo.png"></a>
 		 	</div>
 		   	
-			<input type = "text" ng-model ="searchTerm" id="searchTerm">
+			<input type = "text" ng-model ="searchTerm" ng-keypress="myFunct($event)" id="searchTerm">
 		 	<img id ="searchButton" src = "/images/searchButton.png" ng-click ="searchReq(0)"> </a>		
 
 

@@ -1,11 +1,23 @@
-var youTube = angular.module('youApi',[]);
+var youTube = angular.module('youApi',['ngRoute']);
 var nextToken = '';
 var searchTerm;
+
 //controller to send ajax requests to backend to get video data from youtube api
 youTube.controller('mainController', ['$scope', '$rootScope', '$location','$http',function($scope,$rootScope,$location,$http) {
-	$rootScope.$on('$locationChangeSuccess', function() {		
+	$scope.$on('$locationChangeSuccess', function() {		
 		$scope.refreshItems();
-    });        
+
+    });
+
+    $scope.$on('$routeChangeStart', function (scope, next, current) {
+	        
+    });
+
+    $scope.myFunct = function(keyEvent) {
+  	if (keyEvent.which === 13)
+    	this.searchReq(0);
+	}
+      
 // function made to refresh the controller on each navigation
 	$scope.refreshItems = function() {
 
@@ -42,6 +54,7 @@ youTube.controller('mainController', ['$scope', '$rootScope', '$location','$http
 //function handling the search requests made on clikcing the search button or "more" 
 	$scope.searchReq = function(flag){
 		if(flag==0){
+			if($scope.searchTerm.trim().length>0)
 			window.location.href = '/search?page=render&q=' + $scope.searchTerm;
 		}
 		else{
