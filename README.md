@@ -1,16 +1,16 @@
 Youtube API implementation
 
 
-Functionalities :-
+#Functionalities :-
 
-1) Search : - This lets the user search for a particular video by its keyword.
+#1) Search : - This lets the user search for a particular video by its keyword.
 
-2) View Video : - This lets the user select video from the list and view it.
+#2) View Video : - This lets the user select video from the list and view it.
 
 
-Technologies Used :-
+#Technologies Used :-
 Backend: Node
 
-Front-End: AngularJS , HTML , CSS
+#Front-End: AngularJS , HTML , CSS
 
 
